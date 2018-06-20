@@ -19,6 +19,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.idea.blaze.base.model.BlazeLibrary;
 import com.google.idea.blaze.base.model.BlazeProjectData;
 import com.google.idea.blaze.base.sync.libraries.LibrarySource;
+import com.google.idea.blaze.ijwb.javascript.BlazeJavascriptLibrary;
 import com.intellij.openapi.roots.libraries.Library;
 import java.util.List;
 import java.util.function.Predicate;
@@ -34,7 +35,11 @@ class BlazeTypescriptLibrarySource extends LibrarySource.Adapter {
 
   @Override
   public List<? extends BlazeLibrary> getLibraries() {
-    return ImmutableList.of(library);
+    if (BlazeJavascriptLibrary.useJavascriptLibrary.getValue()) {
+      return ImmutableList.of(library);
+    } else {
+      return ImmutableList.of();
+    }
   }
 
   @Nullable

@@ -136,7 +136,7 @@ public final class BlazeCidrLauncher extends CidrLauncher {
           public void onBlazeContextStart(BlazeContext context) {
             context.push(
                 new IssuesScope(
-                    project, BlazeUserSettings.getInstance().getShowProblemsViewForRunAction()));
+                    project, BlazeUserSettings.getInstance().getShowProblemsViewOnRun()));
           }
 
           @Override

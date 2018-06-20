@@ -38,6 +38,9 @@ public class BlazeIcons {
   public static final Icon BuildFile = load("base/resources/icons/build_file.png"); // 16x16
   public static final Icon BuildRule = load("base/resources/icons/build_rule.png"); // 16x16
 
+  public static final Icon LightningOverlay =
+      load("base/resources/icons/lightningOverlay.png"); // 16x16
+
   private static Icon load(String path) {
     return IconLoader.getIcon(BASE + path, BlazeIcons.class);
   }

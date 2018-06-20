@@ -39,9 +39,7 @@ public class BlazeJavaRunConfigState extends BlazeCommandRunConfigurationCommonS
     super(buildSystem);
     debugPortState = new DebugPortState(DEFAULT_DEBUG_PORT);
     fastBuildState =
-        new FastBuildState(
-            FastBuildService.enabled.getValue()
-                && FastBuildService.getInstance(project).supportsFastBuilds(kind));
+        new FastBuildState(FastBuildService.getInstance(project).supportsFastBuilds(kind));
   }
 
   @Override

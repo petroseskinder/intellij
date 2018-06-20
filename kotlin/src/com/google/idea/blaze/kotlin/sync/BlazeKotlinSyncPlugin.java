@@ -32,6 +32,7 @@ import com.google.idea.blaze.base.scope.BlazeContext;
 import com.google.idea.blaze.base.sync.BlazeSyncParams.SyncMode;
 import com.google.idea.blaze.base.sync.BlazeSyncPlugin;
 import com.google.idea.blaze.base.sync.SyncListener;
+import com.google.idea.blaze.base.sync.data.BlazeProjectDataManager;
 import com.google.idea.blaze.base.sync.libraries.LibrarySource;
 import com.google.idea.blaze.java.sync.model.BlazeJarLibrary;
 import com.google.idea.sdkcompat.kotlin.CommonCompilerArgumentsCompatUtils;
@@ -169,6 +170,12 @@ public class BlazeKotlinSyncPlugin implements BlazeSyncPlugin {
     @Override
     public void afterSync(
         Project project, BlazeContext context, SyncMode syncMode, SyncResult syncResult) {
+      BlazeProjectData blazeProjectData =
+          BlazeProjectDataManager.getInstance(project).getBlazeProjectData();
+      if (blazeProjectData == null
+          || !blazeProjectData.workspaceLanguageSettings.isLanguageActive(LanguageClass.KOTLIN)) {
+        return;
+      }
       ApplicationManager.getApplication()
           .invokeLater(
               () ->

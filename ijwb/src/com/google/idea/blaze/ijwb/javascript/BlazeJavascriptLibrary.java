@@ -25,6 +25,7 @@ import com.google.idea.blaze.base.model.LibraryKey;
 import com.google.idea.blaze.base.model.primitives.WorkspacePath;
 import com.google.idea.blaze.base.sync.projectview.ImportRoots;
 import com.google.idea.blaze.base.sync.workspace.ArtifactLocationDecoder;
+import com.google.idea.common.experiments.BoolExperiment;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.roots.libraries.Library.ModifiableModel;
@@ -39,6 +40,9 @@ import javax.annotation.concurrent.Immutable;
  */
 @Immutable
 public class BlazeJavascriptLibrary extends BlazeLibrary {
+  public static BoolExperiment useJavascriptLibrary =
+      new BoolExperiment("use.javascript.library", false);
+
   private static final long serialVersionUID = 1L;
 
   private final ImmutableList<ArtifactLocation> librarySources;
